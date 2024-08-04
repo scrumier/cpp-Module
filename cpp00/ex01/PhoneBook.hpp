@@ -6,15 +6,16 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-	public:
-		PhoneBook();
-		~PhoneBook();
-		void exit() const;
-		void add();
-		void search() const;
+public:
+	PhoneBook();
+	~PhoneBook();
+	void exit() const;
+	void add();
+	void search();
+	void prompt() const;
 
-	private:
-		Contact _contacts[8];
-
+private:
+	Contact _contacts[8];
 };
+
 #endif
