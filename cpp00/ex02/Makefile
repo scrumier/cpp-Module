@@ -1,8 +1,8 @@
-SRCS = main.cpp PhoneBook.cpp Contact.cpp
+SRCS = test.cpp Account.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = my_phonebook
+NAME = account
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .

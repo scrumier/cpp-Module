@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:01:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/08/26 13:02:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/08/29 12:08:24 by scrumier          #+#    #+#             */
+/*   Updated: 2024/08/29 12:24:28 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstring>
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-int main(int ac, char **av)
+# include <iostream>
+# include <string>
+# include "Weapon.hpp"
+
+class HumanA
 {
-	char c;
-    if (ac == 1){
-        std::cout << "HAYOOOOOOOOOOOOOOOOOO" << std::endl;
-        return 0;
-    }
-	for (int i = 1; i < ac; i++){
-		for (int j = 0; j < (int)strlen(av[i]); j++){
-			c = toupper(av[i][j]);
-			std::cout << c;
-		}
-		if (i < ac - 1)
-			std::cout << " ";
-	}
-}
+	public:
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA();
+		void attack(void);
+
+	private:
+		std::string name;
+		Weapon *weapon;
+};
+
+#endif

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:01:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/08/26 13:02:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/08/29 10:27:04 by scrumier          #+#    #+#             */
+/*   Updated: 2024/08/29 10:40:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstring>
+#include "Zombie.hpp"
 
-int main(int ac, char **av)
-{
-	char c;
-    if (ac == 1){
-        std::cout << "HAYOOOOOOOOOOOOOOOOOO" << std::endl;
-        return 0;
-    }
-	for (int i = 1; i < ac; i++){
-		for (int j = 0; j < (int)strlen(av[i]); j++){
-			c = toupper(av[i][j]);
-			std::cout << c;
-		}
-		if (i < ac - 1)
-			std::cout << " ";
-	}
+Zombie::Zombie(std::string name) : name(name) {
+	std::cout << "" << this->name << ": I'm alive" << std::endl;
+	return;
+}
+
+Zombie::~Zombie(void) {
+	std::cout << "" << this->name << ": I'm dead" << std::endl;
+	return;
+}
+
+void Zombie::announce(void) {
+	std::cout << "" << this->name << ": Braiiiiinnnzzzzzzzzzzzzzzzz..." << std::endl;
+	return;
 }

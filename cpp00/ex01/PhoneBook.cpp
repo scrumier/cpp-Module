@@ -2,14 +2,13 @@
 
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 
 PhoneBook::PhoneBook(){
-
 }
 
 PhoneBook::~PhoneBook(){
-
 }
 
 void PhoneBook::prompt() const{
@@ -41,8 +40,7 @@ std::string truncateAndAlign(const std::string& str, int width) {
 }
 
 void PhoneBook::search() {
-	std::cout << "SEARCH : affiche le contact demandé" << std::endl;
-	std::cout << "     index| first name|  last name|  nickname|" << std::endl;
+	std::cout << "     index|first name| last name| nickname |" << std::endl;
 	for (int i = 0; i < 8; i++) {
 		std::string info = this->_contacts[i].getFirstName();
 		if (!info.empty()) {
@@ -58,8 +56,11 @@ void PhoneBook::search() {
 	std::cout << "Enter the index of the contact to display: ";
 	if (!(std::cin >> index) || index < 0 || index >= 8 || this->_contacts[index].getFirstName().empty()) {
 		std::cout << "Invalid index." << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return;
 	}
 
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << this->_contacts[index].printInfo() << std::endl;
 }

@@ -1,8 +1,8 @@
-SRCS = main.cpp PhoneBook.cpp Contact.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = my_phonebook
+NAME = weapons
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .

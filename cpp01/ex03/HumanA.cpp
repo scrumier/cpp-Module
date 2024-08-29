@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:01:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/08/26 13:02:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/08/29 12:16:53 by scrumier          #+#    #+#             */
+/*   Updated: 2024/08/29 12:37:52 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstring>
+#include "HumanA.hpp"
 
-int main(int ac, char **av)
+HumanA::HumanA(std::string name, Weapon &weapon)
 {
-	char c;
-    if (ac == 1){
-        std::cout << "HAYOOOOOOOOOOOOOOOOOO" << std::endl;
-        return 0;
-    }
-	for (int i = 1; i < ac; i++){
-		for (int j = 0; j < (int)strlen(av[i]); j++){
-			c = toupper(av[i][j]);
-			std::cout << c;
-		}
-		if (i < ac - 1)
-			std::cout << " ";
+	this->name = name;
+	this->weapon = &weapon;
+}
+
+HumanA::~HumanA()
+{
+}
+
+void HumanA::attack(void)
+{
+	if (weapon->getWeaponType().empty())
+	{
+		std::cout << name << " has no weapon" << std::endl;
 	}
+	std::cout << name << " attacks with his " << weapon->getWeaponType() << std::endl;
 }

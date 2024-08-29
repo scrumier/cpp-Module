@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:01:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/08/26 13:02:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/08/29 13:48:30 by scrumier          #+#    #+#             */
+/*   Updated: 2024/08/29 14:39:38 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstring>
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int main(int ac, char **av)
-{
-	char c;
-    if (ac == 1){
-        std::cout << "HAYOOOOOOOOOOOOOOOOOO" << std::endl;
-        return 0;
-    }
-	for (int i = 1; i < ac; i++){
-		for (int j = 0; j < (int)strlen(av[i]); j++){
-			c = toupper(av[i][j]);
-			std::cout << c;
-		}
-		if (i < ac - 1)
-			std::cout << " ";
-	}
-}
+# include <iostream>
+# include <string>
+
+class Harl {
+	public:
+		Harl(void);
+		~Harl(void);
+		void complain(std::string level);
+	private:
+		void debug(void);
+		void info(void);
+		void warning(void);
+		void error(void);
+};
+
+#endif

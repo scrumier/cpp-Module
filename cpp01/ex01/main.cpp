@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:01:27 by scrumier          #+#    #+#             */
-/*   Updated: 2024/08/26 13:02:25 by scrumier         ###   ########.fr       */
+/*   Created: 2024/08/29 10:42:37 by scrumier          #+#    #+#             */
+/*   Updated: 2024/08/29 11:50:22 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstring>
+#include "Zombie.hpp"
 
-int main(int ac, char **av)
+void announceZombieHorde(Zombie *zombieHorde, int N)
 {
-	char c;
-    if (ac == 1){
-        std::cout << "HAYOOOOOOOOOOOOOOOOOO" << std::endl;
-        return 0;
-    }
-	for (int i = 1; i < ac; i++){
-		for (int j = 0; j < (int)strlen(av[i]); j++){
-			c = toupper(av[i][j]);
-			std::cout << c;
-		}
-		if (i < ac - 1)
-			std::cout << " ";
+	for (int i = 0; i < N; i++)
+	{
+		zombieHorde[i].announce();
+	}
+}
+
+int main(void)
+{
+	std::cout << "Creating a hord of zombies" << std::endl;
+	{
+		Zombie *forstZombieHord = zombieHorde(5, "Zombie ");
+		announceZombieHorde(forstZombieHord, 5);
+		delete[] forstZombieHord;
 	}
 }

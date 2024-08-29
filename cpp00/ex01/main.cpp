@@ -12,7 +12,7 @@ int main()
 		std::cout << "Enter your choice: ";
 		std::getline(std::cin, input);
 		if (input == "EXIT") {
-			break;
+			break ;
 		} else if (input == "ADD") {
 			phoneBook.add();
 		} else if (input == "SEARCH") {
@@ -20,5 +20,5 @@ int main()
 		}
 	}
 	phoneBook.exit();
-	return 0;
+	return (0);
 }
