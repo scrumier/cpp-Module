@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:16:22 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/16 17:06:18 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:32:03 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ Animal::Animal(std::string type) : _type(type) {
 
 Animal::Animal(const Animal &src) {
 	*this = src;
+}
+
+Animal::~Animal() {
+	std::cout << "Animal destructor called" << std::endl;
 }
 
 Animal &Animal::operator=(const Animal &src) {
