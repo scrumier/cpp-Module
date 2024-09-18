@@ -1,19 +1,20 @@
-SRCS = main.cpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = 
+NAME = brain_animal
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .
 
 all: $(NAME)
+	@echo "\033[32mCompiled $(NAME)\033[0m"
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp | $(OBJDIR)
-	$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -21,10 +22,12 @@ $(OBJDIR):
 -include $(DEPS)
 
 clean:
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
+	@echo "\033[31mDeleted $(OBJDIR)\033[0m"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[31mDeleted $(NAME)\033[0m"
 
 re: fclean all
 
