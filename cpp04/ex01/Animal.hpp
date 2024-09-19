@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:10:55 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/18 09:52:31 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/19 09:16:13 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include "Brain.hpp"
 
 class Animal {
 	protected:

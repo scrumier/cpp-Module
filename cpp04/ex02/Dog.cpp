@@ -6,14 +6,14 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:17:40 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/19 10:26:00 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:40:39 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Dog::Dog() : Animal("Dog") {
+Dog::Dog() : AAnimal("Dog") {
 	_brain = new Brain();
 	std::cout << "Dog constructor called" << std::endl;
 }

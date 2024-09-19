@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 08:33:33 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/19 09:31:54 by scrumier         ###   ########.fr       */
+/*   Created: 2024/09/16 13:10:55 by scrumier          #+#    #+#             */
+/*   Updated: 2024/09/19 10:40:15 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
 # include <iostream>
 # include <string>
+# include "Brain.hpp"
 
-class Brain
-{
-    private:
-        std::string ideas[100];
-    public:
-        Brain();
-        ~Brain();
-        Brain &operator=(const Brain &src);
+class AAnimal {
+	protected:
+		std::string _type;
 
-        void setIdea(int index, std::string idea);
-        std::string getIdea(int index) const;
+	public:
+		AAnimal();
+		AAnimal(std::string type);
+		virtual ~AAnimal();
+		AAnimal(const AAnimal &src);
+		AAnimal &operator=(const AAnimal &src);
+		std::string getType() const;
+		virtual void makeSound() const = 0;
 };
 
 #endif

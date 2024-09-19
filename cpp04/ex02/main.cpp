@@ -6,25 +6,11 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:10:17 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/19 09:40:18 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:42:42 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 16:35:27 by shovsepy          #+#    #+#             */
-/*   Updated: 2022/01/27 16:37:35 by shovsepy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
@@ -38,7 +24,7 @@
 
 int main()
 {
-	Animal *animals[NUMBER_OF_ANIMALS];
+	AAnimal *animals[NUMBER_OF_ANIMALS];
 
 	for (int i = 0; i < NUMBER_OF_ANIMALS; i++)
 	{
@@ -62,7 +48,7 @@ int main()
 		animals[i]->makeSound();
 	}
 
-	Animal *animal2[NUMBER_OF_ANIMALS];
+	AAnimal *animal2[NUMBER_OF_ANIMALS];
 
 	// deep copy
 	for (int i = 0; i < NUMBER_OF_ANIMALS; i++)

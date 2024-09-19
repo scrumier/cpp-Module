@@ -1,8 +1,8 @@
-SRCS = main.cpp
+SRCS = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = 
+NAME = brain_animal_abstract
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .

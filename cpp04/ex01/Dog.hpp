@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:13:13 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/18 09:51:45 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/19 09:38:42 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "Animal.hpp"
 
 class Dog : public Animal {
+	private:
+		Brain *_brain;
 	public:
 		Dog();
 		Dog(const Dog &src);
@@ -23,6 +25,8 @@ class Dog : public Animal {
 		~Dog();
 
 		void makeSound() const;
+		void setIdeas(int index, std::string idea);
+		std::string getIdeas(int index) const;
 };
 
 #endif

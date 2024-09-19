@@ -1,48 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 13:17:40 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/19 10:26:00 by scrumier         ###   ########.fr       */
+/*   Created: 2024/09/16 13:16:49 by scrumier          #+#    #+#             */
+/*   Updated: 2024/09/19 10:40:43 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Animal.hpp"
+#include "Cat.hpp"
+#include "AAnimal.hpp"
 
-Dog::Dog() : Animal("Dog") {
+Cat::Cat() : AAnimal("Cat") {
 	_brain = new Brain();
-	std::cout << "Dog constructor called" << std::endl;
+	std::cout << "Cat constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &src) {
+Cat::Cat(const Cat &src) {
 	_brain = new Brain();
 	*this = src;
 }
 
-Dog::~Dog() {
+Cat::~Cat() {
 	delete _brain;
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "Cat destructor called" << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &src) {
+Cat &Cat::operator=(const Cat &src) {
 	if (this == &src)
 		return *this;
 	_type = src._type;
 	return *this;
 }
 
-void Dog::makeSound() const {
-	std::cout << "Wouf" << std::endl;
+void Cat::makeSound() const {
+	std::cout << "Miaou" << std::endl;
 }
 
-void Dog::setIdeas(int index, std::string idea) {
+void Cat::setIdeas(int index, std::string idea) {
 	_brain->setIdea(index, idea);
 }
 
-std::string Dog::getIdeas(int index) const {
+std::string Cat::getIdeas(int index) const {
 	return _brain->getIdea(index);
 }
