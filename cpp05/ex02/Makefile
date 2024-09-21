@@ -1,8 +1,8 @@
-SRCS = main.cpp 
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = 
+NAME = bureaucrat_aform
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .

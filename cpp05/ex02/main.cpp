@@ -3,37 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:29:28 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 13:35:54 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:17:57 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int main( void ){
+int main() {
     try {
-        Bureaucrat b1("b1", 100);
-        Bureaucrat b2("b2", 150);
-        Bureaucrat b3("b3", 1);
-        Form f1("f1", 101, 100);
-        Form f2("f2", 150, 150);
-        Form f3("f3", 1, 1);
+        Bureaucrat highRank("High Rank", 1);
+        Bureaucrat midRank("Mid Rank", 50);
+        Bureaucrat lowRank("Low Rank", 140);
 
-        std::cout << f1 << std::endl;
-        std::cout << f2 << std::endl;
-        std::cout << f3 << std::endl;
+        ShrubberyCreationForm shrubberyForm("Home");
+        RobotomyRequestForm robotomyForm("Target");
+        PresidentialPardonForm pardonForm("Criminal");
 
-        b1.signForm(f1);
-        b2.signForm(f2);
-        b3.signForm(f3);
-        std::cout << b1 << std::endl;
-        std::cout << b2 << std::endl;
-        std::cout << b3 << std::endl;
+        std::cout << "\n--- Signature des formulaires ---" << std::endl;
+        highRank.signForm(shrubberyForm);
+        midRank.signForm(robotomyForm);
+        highRank.signForm(pardonForm);
+
+        std::cout << "\n--- Exécution des formulaires ---" << std::endl;
+        highRank.executeForm(shrubberyForm);
+        midRank.executeForm(robotomyForm);
+        highRank.executeForm(pardonForm);
+
+        std::cout << "\n--- Mauvais cas ---" << std::endl;
+
+        try {
+            lowRank.signForm(shrubberyForm);
+        } catch (const std::exception &e) {
+            std::cerr << lowRank.getName() << " couldn't sign the form: " << e.what() << std::endl;
+        }
+
+        ShrubberyCreationForm unsignedShrubberyForm("Garden");
+        try {
+            midRank.executeForm(unsignedShrubberyForm);
+        } catch (const std::exception &e) {
+            std::cerr << midRank.getName() << " couldn't execute the form: " << e.what() << std::endl;
+        }
+
+        try {
+            lowRank.executeForm(pardonForm);
+        } catch (const std::exception &e) {
+            std::cerr << lowRank.getName() << " couldn't execute the form: " << e.what() << std::endl;
+        }
+
+    } catch (const std::exception &e) {
+        std::cerr << "An error occurred: " << e.what() << std::endl;
     }
-    catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+
+    return 0;
 }
