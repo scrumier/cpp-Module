@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:50:53 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/23 16:07:29 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:34:52 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void printChar(double d)
 void printInt(double d)
 {
 	std::cout << "int: ";
-	if (d > INT_MAX || d < INT_MIN)
+	if (d > INT_MAX || d < INT_MIN || d == 0)
 		std::cout << "impossible";
 	else
 		std::cout << static_cast<int>(d);
@@ -63,8 +63,12 @@ void    printFloat(double d)
 	std::cout << "float: ";
 	if (d > FLT_MAX || d < FLT_MIN)
 		std::cout << "impossible" << std::endl;
-	else
-		std::cout << static_cast<float>(d) << "f" << std::endl;
+	else {
+		if (d - (int)d > 0)
+			std::cout << static_cast<float>(d) << "f" << std::endl;
+		else
+			std::cout << static_cast<float>(d) << ".0f" << std::endl;
+	}
 }
 
 void    printDouble(double d)
