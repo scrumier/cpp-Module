@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:34:08 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 13:35:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:49:21 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,18 @@ void Bureaucrat::signForm(Form &f) {
     } catch (std::exception &e) {
         std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
     }
+}
+
+void Bureaucrat::incrementGrade() {
+    if (this->_grade == 1) {
+        throw Bureaucrat::GradeTooHighException();
+    }
+    this->_grade--;
+}
+
+void Bureaucrat::decrementGrade() {
+    if (this->_grade == 150) {
+        throw Bureaucrat::GradeTooLowException();
+    }
+    this->_grade++;
 }

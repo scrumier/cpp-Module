@@ -1,8 +1,8 @@
-SRCS = main.cpp 
+SRCS = main.cpp Identify.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = 
+NAME = identify
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .

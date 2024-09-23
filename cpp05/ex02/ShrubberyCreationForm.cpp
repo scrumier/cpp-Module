@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:54:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/09/20 17:18:53 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/09/23 15:11:54 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 		throw Bureaucrat::GradeTooLowException();
 	}
 
-	std::ofstream file(this->_name + "_shrubbery");
-	if (!file.is_open() || file.fail()) {
-		throw std::exception();
-	}
+	std::string fileName = this->_name + "_shrubbery";
+    std::ofstream file(fileName.c_str());    
+    if (!file.is_open()) {
+        throw std::runtime_error("Error: Could not open file.");
+    }
 
 	file << "       _-_\n";
 	file << "    /~~   ~~\\\n";

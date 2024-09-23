@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:34:08 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 17:16:20 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/09/23 14:49:47 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,18 @@ void Bureaucrat::executeForm(AForm const &form) const {
         std::cerr << this->getName() << " couldn't execute " << form.getName() 
                   << " because " << e.what() << std::endl;
     }
+}
+
+void Bureaucrat::incrementGrade() {
+    if (this->_grade == 1) {
+        throw Bureaucrat::GradeTooHighException();
+    }
+    this->_grade--;
+}
+
+void Bureaucrat::decrementGrade() {
+    if (this->_grade == 150) {
+        throw Bureaucrat::GradeTooLowException();
+    }
+    this->_grade++;
 }

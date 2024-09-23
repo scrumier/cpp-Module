@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:13:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 17:16:20 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/09/23 14:49:42 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ class Bureaucrat {
         int getGrade() const;
         void setGrade(int grade);
         void signForm(AForm &AForm);
+        void incrementGrade();
+        void decrementGrade();
         void executeForm(AForm const &form) const;
 };
 std::ostream& operator<<(std::ostream &out, Bureaucrat &bureaucrat);

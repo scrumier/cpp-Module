@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 09:13:43 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 13:35:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:49:31 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ class Bureaucrat {
         int getGrade();
         void setGrade(int grade);
         void signForm(Form &form);
+        void incrementGrade();
+        void decrementGrade();
 };
 std::ostream& operator<<(std::ostream &out, Bureaucrat &bureaucrat);
 

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:34:08 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/20 13:35:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:48:27 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ void Bureaucrat::setGrade(int grade) {
 std::ostream& operator<<(std::ostream &out, Bureaucrat &bureaucrat) {
     out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
     return out;
+}
+
+void Bureaucrat::incrementGrade() {
+    if (this->_grade == 1) {
+        throw Bureaucrat::GradeTooHighException();
+    }
+    this->_grade--;
+}
+
+void Bureaucrat::decrementGrade() {
+    if (this->_grade == 150) {
+        throw Bureaucrat::GradeTooLowException();
+    }
+    this->_grade++;
 }

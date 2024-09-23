@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:54:27 by sonamcrumie       #+#    #+#             */
-/*   Updated: 2024/09/20 17:18:53 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/09/23 15:12:01 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137) {
-	(void)target;
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137) {
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
@@ -32,29 +31,29 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
-	if (!this->_signed) {
-		throw AForm::FormNotSignedException();
-	}
+    if (!this->_signed) {
+        throw AForm::FormNotSignedException();
+    }
 
-	if (executor.getGrade() > this->_gradeToExecute) {
-		throw Bureaucrat::GradeTooLowException();
-	}
+    if (executor.getGrade() > this->_gradeToExecute) {
+        throw AForm::GradeTooLowException();
+    }
 
-	std::ofstream file(this->_name + "_shrubbery");
-	if (!file.is_open() || file.fail()) {
-		throw std::exception();
-	}
+	std::string fileName = this->_name + "_shrubbery";
+    std::ofstream file(fileName.c_str());
+    if (!file.is_open()) {
+        throw std::runtime_error("Error: Could not open file.");
+    }
 
-	file << "       _-_\n";
-	file << "    /~~   ~~\\\n";
-	file << " /~~         ~~\\\n";
-	file << "{               }\n";
-	file << " \\  _-     -_  /\n";
-	file << "   ~  \\ //  ~\n";
-	file << "_- -   | | _- _\n";
-	file << "  _ -  | |   -_\n";
-	file << "      // \\\n";
+    file << "       _-_\n";
+    file << "    /~~   ~~\\\n";
+    file << " /~~         ~~\\\n";
+    file << "{               }\n";
+    file << " \\  _-     -_  /\n";
+    file << "   ~  \\ //  ~\n";
+    file << "_- -   | | _- _\n";
+    file << "  _ -  | |   -_\n";
+    file << "      // \\\n";
 
-	file.close();
-
+    file.close();
 }
