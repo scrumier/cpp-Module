@@ -6,14 +6,15 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:50:53 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/23 16:34:52 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:33:34 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include <iostream>
 #include <cstdlib>
-#include <climits>
-#include <cfloat>
+#include <limits>
+#include <cmath>
+#include "ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() {
 }
@@ -34,62 +35,93 @@ const char *ScalarConverter::ImpossibleException::what() const throw() {
 	return "impossible";
 }
 
-void printChar(double d)
-{
-	std::cout << "char: ";
-	if (d >= 0 && d <= 127)
-	{
-		if (std::isprint(d))
-			std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
-		else
-			std::cout << "Non displayable" << std::endl;
-	}
-	else
-		std::cout << "impossible" << std::endl;
+bool isDisplayableChar(double value) {
+	return (value >= 32 && value <= 126);
 }
 
-void printInt(double d)
-{
-	std::cout << "int: ";
-	if (d > INT_MAX || d < INT_MIN || d == 0)
-		std::cout << "impossible";
-	else
-		std::cout << static_cast<int>(d);
-	std::cout << std::endl;
+void printChar(double d) {
+    std::cout << "char: ";
+    if (std::isnan(d) || std::isinf(d) || d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
+        std::cout << "impossible" << std::endl;
+    } else if (!isDisplayableChar(d)) {
+        std::cout << "Non displayable" << std::endl;
+    } else {
+        std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
+    }
 }
 
-void    printFloat(double d)
-{
-	std::cout << "float: ";
-	if (d > FLT_MAX || d < FLT_MIN)
-		std::cout << "impossible" << std::endl;
-	else {
-		if (d - (int)d > 0)
-			std::cout << static_cast<float>(d) << "f" << std::endl;
-		else
-			std::cout << static_cast<float>(d) << ".0f" << std::endl;
-	}
+void printInt(double d) {
+    std::cout << "int: ";
+    if (std::isnan(d) || std::isinf(d) || d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
+        std::cout << "impossible" << std::endl;
+    } else {
+        std::cout << static_cast<int>(d) << std::endl;
+    }
 }
 
-void    printDouble(double d)
-{
-	// check max and min
-	if (d > DBL_MAX || d < DBL_MIN) {
-		std::cout << "double: " << "impossible" << std::endl;
-	} else {
-		if (d - (int)d > 0)
-			std::cout << "double: " << d << std::endl;
-		else
-			std::cout << "double: " << d << ".0" << std::endl;
-	}
+void printFloat(double d) {
+    std::cout << "float: ";
+    if (std::isnan(d)) {
+        std::cout << "nanf" << std::endl;
+    } else if (std::isinf(d)) {
+        if (d > 0)
+            std::cout << "+inff" << std::endl;
+        else
+            std::cout << "-inff" << std::endl;
+    } else {
+        std::cout << static_cast<float>(d);
+        if (static_cast<float>(d) == static_cast<int>(d))
+            std::cout << ".0f" << std::endl;
+        else
+            std::cout << "f" << std::endl;
+    }
+}
+
+void printDouble(double d) {
+    std::cout << "double: ";
+    if (std::isnan(d)) {
+        std::cout << "nan" << std::endl;
+    } else if (std::isinf(d)) {
+        if (d > 0)
+            std::cout << "+inf" << std::endl;
+        else
+            std::cout << "-inf" << std::endl;
+    } else {
+        std::cout << d;
+        if (d == static_cast<int>(d))
+            std::cout << ".0" << std::endl;
+        else
+            std::cout << std::endl;
+    }
 }
 
 void ScalarConverter::convert(std::string str) {
-	char *endptr;
-	
-	double d = strtod(str.c_str(), &endptr);
-	printChar(d);
-	printInt(d);
-	printFloat(d);
-	printDouble(d);
+    if (str.length() == 3 && str[0] == '\'' && str[2] == '\'') {
+        char c = str[1];
+        double d = static_cast<double>(c);
+        printChar(d);
+        printInt(d);
+        printFloat(d);
+        printDouble(d);
+        return;
+    }
+    
+    char *endptr;
+    double d = strtod(str.c_str(), &endptr);
+
+    if (*endptr != '\0') {
+        if (str == "-inff" || str == "+inff" || str == "nanf") {
+            d = strtof(str.c_str(), NULL);
+        } else if (str == "-inf" || str == "+inf" || str == "nan") {
+            d = strtod(str.c_str(), NULL);
+        } else {
+            std::cout << "Invalid literal" << std::endl;
+            return;
+        }
+    }
+
+    printChar(d);
+    printInt(d);
+    printFloat(d);
+    printDouble(d);
 }

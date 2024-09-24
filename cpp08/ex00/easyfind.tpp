@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyfind.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 08:44:56 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/24 13:28:33 by scrumier         ###   ########.fr       */
+/*   Created: 2024/09/24 11:40:35 by scrumier          #+#    #+#             */
+/*   Updated: 2024/09/24 11:43:23 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "easyfind.hpp"
 
-int main(int ac, char **av) {
-    if (ac != 2)
-        return 1;
-    try {
-        ScalarConverter::convert(av[1]);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
-    return 0;
+template <typename T>
+typename T::value_type easyfind(T src, int to_find) {
+    typename T::iterator it = std::find(src.begin(), src.end(), to_find);
+    if (it == src.end())
+        throw std::exception();
+    return *it;
 }
