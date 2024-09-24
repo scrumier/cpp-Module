@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:50:53 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/24 13:33:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:44:32 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,26 @@ void ScalarConverter::convert(std::string str) {
         return;
     }
     
+
     char *endptr;
+
+    if (str[str.length() - 1] == 'f') {
+        str = str.substr(0, str.length() - 1);
+        float f = strtof(str.c_str(), &endptr);
+
+        if (*endptr != '\0') {
+            std::cout << "Invalid literal" << std::endl;
+            return;
+        }
+
+        double d = static_cast<double>(f);
+        printChar(d);
+        printInt(d);
+        printFloat(d);
+        printDouble(d);
+        return;
+    }
+
     double d = strtod(str.c_str(), &endptr);
 
     if (*endptr != '\0') {
