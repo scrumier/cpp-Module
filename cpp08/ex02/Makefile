@@ -2,7 +2,7 @@ SRCS = main.cpp
 OBJDIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
-NAME = 
+NAME = mutantstack
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .
