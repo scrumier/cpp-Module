@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:48:38 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/24 14:53:54 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:35:57 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,17 @@ int Span::shortestSpan() {
     }
     std::vector<int> v = _v;
     std::sort(v.begin(), v.end());
-    int min = v[1] - v[0];
+    int min = 0;
+    for (unsigned int i = 0; i < v.size() - 1; i++) {
+        if (v[i] == v[i + 1]) {
+            return 0;
+        } else {
+            int tmp_min = v[i + 1] - v[i];
+            if (i == 0 || tmp_min < min) {
+                min = tmp_min;
+            }
+        }
+    }
     return min;
 }
 

@@ -5,19 +5,19 @@ DEPS = $(OBJS:.o=.d)
 NAME = find
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-INC = -I . easyfind.tpp
+INC = -I .
 
 all: $(NAME)
 	@echo "\033[32mCompiled $(NAME)\033[0m"
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp | $(OBJDIR)
-	@$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -MMD -MP -c $< -o $@
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
 -include $(DEPS)
 
