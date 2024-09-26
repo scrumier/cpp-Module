@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:44:15 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/26 10:19:34 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:06:10 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PmergeMe {
 	private:
 
 		template <typename Container>
-		typename Container::iterator binarySearchInsert(Container& sortedList, int value);
+		typename Container::iterator searchWhereInsert(Container& sortedList, int value);
 
 		template <typename Container>
 		void insertSmallElements(Container& sortedList, Container& smallElements);

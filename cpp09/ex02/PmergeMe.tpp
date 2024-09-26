@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/26 10:19:29 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:06:11 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void pairElements(Container& input, Container& smallElements, Container& largeEl
 }
 
 template <typename Container>
-typename Container::iterator PmergeMe::binarySearchInsert(Container& sortedList, int value) {
+typename Container::iterator PmergeMe::searchWhereInsert(Container& sortedList, int value) {
     typename Container::iterator low = sortedList.begin();
     typename Container::iterator high = sortedList.end();
     while (low != high) {
@@ -61,7 +61,7 @@ typename Container::iterator PmergeMe::binarySearchInsert(Container& sortedList,
 template <typename Container>
 void PmergeMe::insertSmallElements(Container& sortedList, Container& smallElements) {
     for (typename Container::iterator it = smallElements.begin(); it != smallElements.end(); ++it) {
-        typename Container::iterator position = binarySearchInsert(sortedList, *it);
+        typename Container::iterator position = searchWhereInsert(sortedList, *it);
         sortedList.insert(position, *it);
     }
 }
