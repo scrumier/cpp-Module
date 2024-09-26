@@ -5,7 +5,7 @@ DEPS = $(OBJS:.o=.d)
 NAME = find
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-INC = -I .
+INC = -I . easyfind.tpp
 
 all: $(NAME)
 	@echo "\033[32mCompiled $(NAME)\033[0m"
