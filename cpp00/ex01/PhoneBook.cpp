@@ -57,10 +57,8 @@ void PhoneBook::search() {
 	if (!(std::cin >> index) || index < 0 || index >= 8 || this->_contacts[index].getFirstName().empty()) {
 		std::cout << "Invalid index." << std::endl;
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return;
-	}
+	}	
 
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << this->_contacts[index].printInfo() << std::endl;
 }
