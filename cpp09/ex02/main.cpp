@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:43:18 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/02 09:52:19 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:52:51 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,42 @@ int main(int argc, char** argv) {
         PmergeMe sorter;
         sorter.checkForErrors(argc, argv);
         
+        std::vector<int> fullVector;
         std::vector<int> vectorContainer;
         std::list<int> listContainer;
 
         for (int i = 1; i < argc; ++i) {
             int number = std::atoi(argv[i]);
-            vectorContainer.push_back(number);
-            listContainer.push_back(number);
+            fullVector.push_back(number);
         }
+        //sorter.displaySequence(fullVector, "Before: ");
 
-        //sorter.displaySequence(vectorContainer, "Before: ");
-        
 		clock_t start = clock();
+        for (int i = 1; i < argc; ++i) {
+            int number = std::atoi(argv[i]);
+            vectorContainer.push_back(number);
+        }
         sorter.mergeInsertSort(vectorContainer);
 		clock_t end = clock();
 		double elapsed = double(end - start) / CLOCKS_PER_SEC;
 		std::cout << "Time for vector: " << elapsed << std::endl;
         sorter.checkIfSorted(vectorContainer);
+
+
         
 		start = clock();
+        for (int i = 1; i < argc; ++i) {
+            int number = std::atoi(argv[i]);
+            listContainer.push_back(number);
+        }
         sorter.mergeInsertSort(listContainer);
 		end = clock();
 		elapsed = double(end - start) / CLOCKS_PER_SEC;
 		std::cout << "Time for list: " << elapsed << std::endl;
         sorter.checkIfSorted(listContainer);
-        
         //sorter.displaySequence(vectorContainer, "After (vector): ");
         //sorter.displaySequence(listContainer, "After (list): ");
+        
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;

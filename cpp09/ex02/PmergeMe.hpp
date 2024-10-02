@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:44:15 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/02 09:51:39 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:37:42 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 #include <stdexcept>
 #include <ctime>
 
-int jacobsthal(int n);
-
 class PmergeMe {
 	private:
+
+		unsigned int _size;
 
 		template <typename Container>
 		typename Container::iterator binarySearch(Container& sortedList, int value);

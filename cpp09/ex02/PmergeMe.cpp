@@ -6,16 +6,16 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:49:14 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/02 09:02:56 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:39:54 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <cstring>
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() : _size(0) {}
 
-PmergeMe::PmergeMe(const PmergeMe& other) {
+PmergeMe::PmergeMe(const PmergeMe& other) : _size(0) {
     *this = other;
 }
 

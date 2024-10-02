@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/02 09:54:58 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:48:10 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,22 @@ void PmergeMe::checkIfSorted(const Container& container) const {
 template <typename Container>
 Container PmergeMe::computeJacobsthalSequence(int max) {
 	Container sequence;
-	if (max <= 0) return sequence;
-
 	int j0 = 0;
 	int j1 = 1;
 
+	if (max <= 0)
+		return sequence;
+
 	sequence.push_back(j0);
-	if (max == 1) return sequence;
+	if (max == 1)
+		return sequence;
 
 	sequence.push_back(j1);
 	
 	for (int i = 2; ; ++i) {
 		int jn = j1 + 2 * j0;
-		if (jn > max) break;
+		if (jn > max)
+			break;
 		sequence.push_back(jn);
 		j0 = j1;
 		j1 = jn;
@@ -83,7 +86,14 @@ void pairElements(Container& input, Container& smallElements, Container& largeEl
 template <typename Container>
 typename Container::iterator PmergeMe::binarySearch(Container& sortedList, int value) {
 	typename Container::iterator low = sortedList.begin();
-	typename Container::iterator high = sortedList.end();
+	typename Container::iterator high;
+
+	if (*low + _size > sortedList.size())
+		high = sortedList.end();
+	else {
+		high = low;
+		std::advance(high, _size);
+	}
 	while (low != high) {
 		typename Container::iterator mid = low;
 		std::advance(mid, std::distance(low, high) / 2);
@@ -117,13 +127,14 @@ void PmergeMe::insertSmallElements(Container& sortedList, Container& smallElemen
         // Perform binary search for precise insertion point
         typename Container::iterator insertPos = binarySearch(sortedList, *smallIt);
         sortedList.insert(insertPos, *smallIt);
+		_size++;
     }
 }
 
-
 template <typename Container>
 void PmergeMe::mergeInsertSort(Container& input) {
-	if (input.size() <= 1) return;
+	if (input.size() <= 1)
+		return;
 
 	Container smallElements;
 	Container largeElements;
