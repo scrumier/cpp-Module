@@ -5,7 +5,7 @@ DEPS = $(OBJS:.o=.d)
 NAME = PmergeMe
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-INC = -I . PmergeMe.tpp
+INC = -I .
 
 all: $(NAME)
 	@echo "\033[32mCompiled $(NAME)\033[0m"

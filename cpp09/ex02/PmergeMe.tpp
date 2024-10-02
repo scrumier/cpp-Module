@@ -6,78 +6,133 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/26 13:06:11 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:54:58 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 template <typename Container>
+void PmergeMe::checkIfSorted(const Container& container) const {
+	typename Container::const_iterator it = container.begin();
+	while (it != container.end()) {
+		typename Container::const_iterator next = it;
+		++next;
+		if (next != container.end() && *it > *next) {
+			throw std::invalid_argument("Error: The sequence is not sorted.");
+		}
+		++it;
+	}
+}
+
+template <typename Container>
+Container PmergeMe::computeJacobsthalSequence(int max) {
+	Container sequence;
+	if (max <= 0) return sequence;
+
+	int j0 = 0;
+	int j1 = 1;
+
+	sequence.push_back(j0);
+	if (max == 1) return sequence;
+
+	sequence.push_back(j1);
+	
+	for (int i = 2; ; ++i) {
+		int jn = j1 + 2 * j0;
+		if (jn > max) break;
+		sequence.push_back(jn);
+		j0 = j1;
+		j1 = jn;
+	}
+
+	return sequence;
+}
+
+template <typename Container>
 void PmergeMe::displaySequence(const Container& container, const std::string& label) const {
-    std::cout << label;
-    for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+	std::cout << label;
+	for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
 
 template <typename Container>
 void pairElements(Container& input, Container& smallElements, Container& largeElements) {
-    typename Container::iterator it = input.begin();
-    while (it != input.end()) {
-        int first = *it;
-        ++it;
-        if (it != input.end()) {
-            int second = *it;
-            ++it;
-            if (first < second) {
-                smallElements.push_back(first);
-                largeElements.push_back(second);
-            } else {
-                smallElements.push_back(second);
-                largeElements.push_back(first);
-            }
-        } else {
-            smallElements.push_back(first);
-        }
-    }
+	typename Container::iterator it = input.begin();
+	while (it != input.end()) {
+		int first = *it;
+		++it;
+		if (it != input.end()) {
+			int second = *it;
+			++it;
+			if (first < second) {
+				smallElements.push_back(first);
+				largeElements.push_back(second);
+			} else {
+				smallElements.push_back(second);
+				largeElements.push_back(first);
+			}
+		} else {
+			smallElements.push_back(first);
+		}
+	}
 }
 
 template <typename Container>
-typename Container::iterator PmergeMe::searchWhereInsert(Container& sortedList, int value) {
-    typename Container::iterator low = sortedList.begin();
-    typename Container::iterator high = sortedList.end();
-    while (low != high) {
-        typename Container::iterator mid = low;
-        std::advance(mid, std::distance(low, high) / 2);
-        if (*mid < value)
-            low = ++mid;
-        else
-            high = mid;
-    }
-    return low;
+typename Container::iterator PmergeMe::binarySearch(Container& sortedList, int value) {
+	typename Container::iterator low = sortedList.begin();
+	typename Container::iterator high = sortedList.end();
+	while (low != high) {
+		typename Container::iterator mid = low;
+		std::advance(mid, std::distance(low, high) / 2);
+		if (*mid < value)
+			low = ++mid;
+		else
+			high = mid;
+	}
+	return low;
 }
 
 template <typename Container>
 void PmergeMe::insertSmallElements(Container& sortedList, Container& smallElements) {
-    for (typename Container::iterator it = smallElements.begin(); it != smallElements.end(); ++it) {
-        typename Container::iterator position = searchWhereInsert(sortedList, *it);
-        sortedList.insert(position, *it);
+    Container jacobsthalSequence = computeJacobsthalSequence<Container>(smallElements.size());
+
+    typename Container::iterator smallIt = smallElements.begin();
+    typename Container::iterator sortedIt;
+
+    for (typename Container::iterator jacobIt = jacobsthalSequence.begin();
+         jacobIt != jacobsthalSequence.end() && smallIt != smallElements.end(); 
+         ++jacobIt, ++smallIt) {
+        
+        int jacobIndex = *jacobIt;
+        if (jacobIndex < static_cast<int>(sortedList.size())) {
+            sortedIt = sortedList.begin();
+            std::advance(sortedIt, jacobIndex);
+        } else {
+            sortedIt = sortedList.end();
+        }
+
+        // Perform binary search for precise insertion point
+        typename Container::iterator insertPos = binarySearch(sortedList, *smallIt);
+        sortedList.insert(insertPos, *smallIt);
     }
 }
 
+
 template <typename Container>
 void PmergeMe::mergeInsertSort(Container& input) {
-    if (input.size() <= 1) return;
+	if (input.size() <= 1) return;
 
-    Container smallElements;
-    Container largeElements;
+	Container smallElements;
+	Container largeElements;
 
-    pairElements(input, smallElements, largeElements);
+	pairElements(input, smallElements, largeElements);
 
-    mergeInsertSort(largeElements);
+	mergeInsertSort(largeElements);
 
-    insertSmallElements(largeElements, smallElements);
+	insertSmallElements(largeElements, smallElements);
 
-    input = largeElements;
+	input = largeElements;
 }

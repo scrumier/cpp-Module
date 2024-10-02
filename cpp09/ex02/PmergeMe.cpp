@@ -6,11 +6,12 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:49:14 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/26 10:20:27 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:02:56 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <cstring>
 
 PmergeMe::PmergeMe() {}
 
@@ -34,6 +35,12 @@ void PmergeMe::checkForErrors(int argc, char** argv) {
             if (!isdigit(*c)) {
                 throw std::invalid_argument("Error: Bad arguments.");
             }
+        }
+        if (strlen(argv[i]) > 10) {
+            throw std::invalid_argument("Error: Bad arguments.");
+        }
+        if (std::atol(argv[i]) > 2147483647) {
+            throw std::invalid_argument("Error: Bad arguments.");
         }
     }
 }

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:44:15 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/26 13:06:10 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:51:39 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 #include <stdexcept>
 #include <ctime>
 
+int jacobsthal(int n);
+
 class PmergeMe {
 	private:
 
 		template <typename Container>
-		typename Container::iterator searchWhereInsert(Container& sortedList, int value);
+		typename Container::iterator binarySearch(Container& sortedList, int value);
 
 		template <typename Container>
 		void insertSmallElements(Container& sortedList, Container& smallElements);
+
+		template <typename Container>
+		Container computeJacobsthalSequence(int max);
 
 	public:
 		PmergeMe();
@@ -43,6 +48,8 @@ class PmergeMe {
 
 		void checkForErrors(int argc, char** argv);
 
+		template <typename Container>
+		void checkIfSorted(const Container& container) const;
 };
 
 #include "PmergeMe.tpp"
