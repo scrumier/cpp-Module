@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 08:43:18 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/03 14:21:02 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:01:46 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int main(int argc, char** argv) {
 
         std::vector<int> vectorContainer;
         std::list<int> listContainer;
-        std::vector<int> fullVector;
-        for (int i = 1; i < argc; ++i) {
-            int number = std::atoi(argv[i]);
-            fullVector.push_back(number);
-        }
-        sorter.displaySequence(fullVector, "Before: ");
+        // std::vector<int> fullVector;
+        // for (int i = 1; i < argc; ++i) {
+        //     int number = std::atoi(argv[i]);
+        //     fullVector.push_back(number);
+        // }
+        // sorter.displaySequence(fullVector, "Before: ");
 
 		clock_t start = clock();
         for (int i = 1; i < argc; ++i) {
@@ -49,8 +49,8 @@ int main(int argc, char** argv) {
 		elapsed = double(end - start) / CLOCKS_PER_SEC;
 		std::cout << "Time for list: " << elapsed << std::endl;
         sorter.checkIfSorted(vectorContainer);
-        sorter.displaySequence(vectorContainer, "After (vector): ");
-        sorter.displaySequence(listContainer, "After (list): ");
+        // sorter.displaySequence(vectorContainer, "After (vector): ");
+        // sorter.displaySequence(listContainer, "After (list): ");
         
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;

@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/02 13:48:10 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:53:51 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void PmergeMe::insertSmallElements(Container& sortedList, Container& smallElemen
     typename Container::iterator sortedIt;
 
     for (typename Container::iterator jacobIt = jacobsthalSequence.begin();
-         jacobIt != jacobsthalSequence.end() && smallIt != smallElements.end(); 
-         ++jacobIt, ++smallIt) {
+			jacobIt != jacobsthalSequence.end() && smallIt != smallElements.end(); 
+        	++jacobIt, ++smallIt) {
         
         int jacobIndex = *jacobIt;
         if (jacobIndex < static_cast<int>(sortedList.size())) {
