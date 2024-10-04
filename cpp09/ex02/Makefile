@@ -4,7 +4,7 @@ OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
 NAME = PmergeMe
 CC = c++
-CFLAGS = -Wall -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I .
 
 all: $(NAME)
