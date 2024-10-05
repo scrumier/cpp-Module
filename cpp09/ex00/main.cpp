@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 08:43:31 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/25 11:46:22 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:16:31 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ char check_separator(const std::string &line) {
 		return '|';
 	}
 	throw std::runtime_error("Error: unknown separator in the file.");
+}
+
+bool is_leap_year(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool is_valid_date(std::string date) {
+    std::istringstream date_stream(date);
+    std::string token;
+    std::vector<std::string> date_parts;
+    while (std::getline(date_stream, token, '-')) {
+        date_parts.push_back(token);
+    }
+
+    return date_parts.size() == 3;
 }
 
 int main(int argc, char *argv[]) {
@@ -71,7 +86,9 @@ int main(int argc, char *argv[]) {
                     std::cerr << "Error: not a positive number." << std::endl;
                 } else if (value > 1000) {
                     std::cerr << "Error: too large a number." << std::endl;
-                } else {
+				} else if (is_valid_date(date) == false) {
+					std::cerr << "Error: invalid date format" << std::endl;
+				} else {
                     float rate = btcExchange.getBitcoinPrice(date);
                     std::cout << date << " => " << value << " = " << value * rate << std::endl;
                 }
