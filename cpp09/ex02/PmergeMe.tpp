@@ -6,7 +6,7 @@
 /*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/04 11:31:14 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/10/05 10:35:38 by sonamcrumie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ Container PmergeMe::computeJacobsthalSequence(int max) {
 
 	sequence.push_back(j1);
 	
-	for (int jn = j1 + 2 * j0; jn <= max;) {
+	for (int i = 0; i < INT_MAX; i++) {
+		int jn = j1 + 2 * j0;
+		if (jn <= max)
+			break ;
 		sequence.push_back(jn);
 		j0 = j1;
 		j1 = jn;
