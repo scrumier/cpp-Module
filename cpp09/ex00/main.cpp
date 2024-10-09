@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 08:43:31 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/05 11:16:31 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/10/09 08:45:56 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	try {
-		BitcoinExchange btcExchange("data.csv");
+		BitcoinExchange btcExchange("input.csv");
 		
 		std::ifstream file(argv[1]);
 		if (!file.is_open()) {

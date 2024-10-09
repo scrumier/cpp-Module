@@ -6,11 +6,26 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:03:28 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/25 15:05:35 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:51:00 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+RPN::RPN() {
+}
+
+RPN::RPN(const RPN &rhs) {
+	*this = rhs;
+}
+
+RPN::~RPN() {
+}
+
+RPN& RPN::operator=(const RPN &rhs) {
+	(void)rhs;
+	return *this;
+}
 
 bool RPN::isOperator(const std::string &token) {
 	return token == "+" || token == "-" || token == "*" || token == "/";

@@ -6,14 +6,26 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 08:52:25 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/25 09:14:04 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:41:15 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+BitcoinExchange::BitcoinExchange() {
+}
+
 BitcoinExchange::BitcoinExchange(const std::string &csvFile) {
     loadData(csvFile);
+}
+
+BitcoinExchange::~BitcoinExchange() {
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs) {
+    if (this != &rhs)
+        _data = rhs._data;
+    return *this;
 }
 
 float BitcoinExchange::getBitcoinPrice(const std::string &date) const {

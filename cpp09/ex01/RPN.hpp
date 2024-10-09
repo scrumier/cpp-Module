@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:03:29 by scrumier          #+#    #+#             */
-/*   Updated: 2024/09/25 15:04:32 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:41:52 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ class RPN {
 		static int applyOperator(const std::string &token, int a, int b);
 	public:
 		static int evaluate(const std::string &expression);
+		RPN();
+		RPN(const RPN &rhs);
+		~RPN();
+		RPN& operator=(const RPN &rhs);
 };
 
 #endif
