@@ -13,12 +13,13 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-#include <iostream>
-#include <vector>
-#include <list>
-#include <algorithm>
-#include <stdexcept>
-#include <ctime>
+# include <iostream>
+# include <vector>
+# include <list>
+# include <algorithm>
+# include <stdexcept>
+# include <ctime>
+# include <limits.h>
 
 class PmergeMe {
 	private:
@@ -52,6 +53,6 @@ class PmergeMe {
 		void checkIfSorted(const Container& container) const;
 };
 
-#include "PmergeMe.tpp"
+# include "PmergeMe.tpp"
 
 #endif
