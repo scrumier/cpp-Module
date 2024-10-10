@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonamcrumiere <sonamcrumiere@student.42    +#+  +:+       +#+        */
+/*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 10:19:23 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/05 10:35:38 by sonamcrumie      ###   ########.fr       */
+/*   Updated: 2024/10/10 16:28:44 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ Container PmergeMe::computeJacobsthalSequence(int max) {
 		return sequence;
 
 	sequence.push_back(j1);
-	
-	for (int i = 0; i < INT_MAX; i++) {
+
+	for (int i = 0; i < max; i++) {
 		int jn = j1 + 2 * j0;
 		if (jn <= max)
 			break ;
@@ -109,25 +109,22 @@ template <typename Container>
 void PmergeMe::insertSmallElements(Container& sortedList, Container& smallElements) {
     Container jacobsthalSequence = computeJacobsthalSequence<Container>(smallElements.size());
 
-    typename Container::iterator smallIt = smallElements.begin();
+    typename Container::iterator smallIt;
     typename Container::iterator sortedIt;
+    typename Container::iterator jacobIt;
 
-    for (typename Container::iterator jacobIt = jacobsthalSequence.begin();
-			jacobIt != jacobsthalSequence.end() && smallIt != smallElements.end(); 
-        	++jacobIt, ++smallIt) {
-        
+    for (jacobIt = jacobsthalSequence.begin(); jacobIt != jacobsthalSequence.end(); ++jacobIt) {
+
         int jacobIndex = *jacobIt;
-        if (jacobIndex < static_cast<int>(sortedList.size())) {
-            sortedIt = sortedList.begin();
-            std::advance(sortedIt, jacobIndex);
-        } else {
-            sortedIt = sortedList.end();
+        if (jacobIndex >= static_cast<int>(smallElements.size())) {
+            break;
         }
+        smallIt = smallElements.begin();
+        std::advance(smallIt, jacobIndex);
+        sortedIt = binarySearch(sortedList, *smallIt);
+        sortedList.insert(sortedIt, *smallIt);
 
-        // Perform binary search for precise insertion point
-        typename Container::iterator insertPos = binarySearch(sortedList, *smallIt);
-        sortedList.insert(insertPos, *smallIt);
-		_size++;
+        _size++;
     }
 }
 
