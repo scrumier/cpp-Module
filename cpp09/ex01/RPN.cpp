@@ -6,7 +6,7 @@
 /*   By: scrumier <scrumier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:03:28 by scrumier          #+#    #+#             */
-/*   Updated: 2024/10/09 08:51:00 by scrumier         ###   ########.fr       */
+/*   Updated: 2024/10/11 08:51:24 by scrumier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ int RPN::evaluate(const std::string& expression) {
 			std::stringstream ss(token);
 			int num;
 			ss >> num;
+			// check if the number is < 10 and > -2147483648
+			if (num < -2147483648 || num >= 10)
+				throw std::runtime_error("Error: number out of range");
 			stack.push(num);
 		}
 			
